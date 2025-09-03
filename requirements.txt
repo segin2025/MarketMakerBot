@@ -1,0 +1,7 @@
+pandas==2.2.2
+numpy==1.26.4
+python-binance==1.0.19
+PyYAML==6.0.2
+requests==2.32.3
+scikit-learn==1.5.1
+

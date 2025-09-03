@@ -1,0 +1,94 @@
+regime:
+  adx_min: 14
+  atrp_min: 0.012
+  atrp_max: 0.12
+  funding_abs_max: 0.0025  # 0.25% per 8h
+trend:
+  tf_primary: "4h"
+  ema_fast: 50
+  ema_slow: 200
+  adx: 14
+vwap:
+  std_k1: 1
+  std_k2: 2
+liquidity:
+  use_pdh_pdl: true
+  fvg_min_body_ratio: 0.6
+entry:
+  wick_min_ratio: 0.4
+  volume_spike_sigma: 2.0
+risk:
+  r_per_trade: 0.003
+  max_daily_loss_r: 2
+  leverage_cap: 3
+  min_notional_floor_usd: 150
+  max_r_per_trade: 0.015
+exit:
+  be_after_r: 1
+  partials: [0.3, 0.3]
+  chandelier_atr: 22
+  chandelier_mult: 3
+hedge:
+  corr_window: 24
+  corr_threshold: 0.8
+  btc_hedge_beta: 0.3
+runtime:
+  universe_top_n: 80
+  demo_equity: 10000
+  base_symbol: "BTCUSDT"
+  quote: "USDT"
+  min_24h_volume_usd: 50000000
+  min_coin_atr_percent: 0.025
+  log_level: "INFO"
+stops:
+  buffer_atr_mult: 0.8
+  min_atr_mult: 0.8
+  max_atr_mult: 2.2
+  time_stop_bars_15m: 6
+  move_to_be_after_R: 0.7
+  chandelier:
+    atr_len: 22
+    mult_normal: 3.0
+    mult_low_vol: 2.5
+    mult_high_vol: 3.5
+take_profits:
+  t1_rr: 1.0
+  t1_pct: 0.30
+  t1_anchor: "VWAP+1σ_or_last_swing_high"
+  t2_anchor: "PDH_or_equal_highs"
+  t2_pct: 0.30
+  trail_pct: 0.40
+  news_tighten: true
+  news_tighten_mult_delta: -0.5
+  funding_flip_cut_pct: 0.50
+  time_lock_bars: 8
+  time_lock_floor_R: 1.0
+  min_t1_atr_mult: 0.6
+  min_t2_atr_mult: 0.8
+modes:
+  strict:
+    wick_min: 0.40
+    volume_spike_sigma: 2.0
+    min_RR: 1.0
+    min_score: 0.58
+    r_per_trade: 0.003
+    max_open: 5
+    enable_vwap_trigger: false
+    ignore_trend_if_RS: 0.70
+  relaxed:
+    wick_min: 0.25
+    volume_spike_sigma: 1.0
+    min_RR: 0.6
+    min_score: 0.38
+    r_per_trade: 0.005
+    max_open: 5
+    hourly_signal_cap: 5
+    same_coin_cooldown_min: 5
+    enable_vwap_trigger: true
+    ignore_trend_if_RS: 0.80
+risk_budget:
+  daily_total_R: 4
+  stop_day_R: -2
+  relaxed_sub_stop_R: -1.5
+correlation:
+  max_pairwise_r: 0.8
